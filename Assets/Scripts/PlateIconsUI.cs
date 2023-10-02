@@ -21,14 +21,22 @@ public class PlateIconsUI : MonoBehaviour {
 
     private void UpdateVisual() {
         foreach (Transform child in transform) {
-            if (child == iconTemplate) continue;
+            if (child == iconTemplate) {
+                continue;
+            }
+
             Destroy(child.gameObject);
         }
-        
+
         foreach (KitchenObjectSO kitchenObjectSO in plateKitchenObject.GetKitchenObjectSOList()) {
             Transform iconTransform = Instantiate(iconTemplate, transform);
-            iconTemplate.gameObject.SetActive(true);
-            iconTransform.GetComponent<PlateIconsSingleUI>().SetKitchenObjectSO(kitchenObjectSO);
+            PlateIconsSingleUI singleIcon = iconTransform.GetComponent<PlateIconsSingleUI>();
+            
+            if (singleIcon.gameObject.name == "IconTemplate(Clone)") {
+                singleIcon.gameObject.SetActive(true);
+            }
+
+            singleIcon.SetKitchenObjectSO(kitchenObjectSO);
         }
     }
 }
