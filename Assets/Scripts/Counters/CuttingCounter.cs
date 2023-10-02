@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter, IHasProgress {
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+    public event EventHandler OnCut;
     public class OnProgressChangedEventArgs : EventArgs {
         public float progressNormalized;
     }
 
-    public event EventHandler OnCut;
+    
 
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
 
